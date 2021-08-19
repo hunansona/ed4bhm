@@ -1,0 +1,13 @@
+Package: ed4bhm
+Type: Package
+Title: Empirical Determinacy for Bayesian Hierarchical Models
+Version: 1.0-1
+Date: 2021-08-19
+Author: Sona Hunanyan [aut, cre], Malgorzata Roos [aut]
+Maintainer: Sona Hunanyan <sona.hunanyan@uzh.ch>
+Description: More about what it does (maybe more than one line)
+License: GPL (>=2)
+Depends: R (>= 3.5.0)
+Imports: rjags (>= 3-13), coda (>= 0.13), INLA
+SystemRequirements: JAGS-4.x.y.exe (x >=0, y>=0)
+NeedsCompilation: no

@@ -1,0 +1,39 @@
+extract_descriptives_jags <-
+function(jags.object.base, w, prec.name) {
+  #INPUT:
+  #jags.object.base a jags object returned by coda.samples that possibly contains deviance samples 
+  #w weighting factor w = 1+-delta
+  #prec.name the name(s) of the precision parameter(s) or NULL if there is no precision parameter in the model
+  #OUTPUT:
+  #this function takes a jags object and extracts the descriptive statistics (mean and standard deviation) of the model parameters
+  #descriptive matrix with two columns (mean and sd) and rows for all the parameters of the model
+
+  descriptive.matrix <- NULL
+  # d.m <- NULL to find the index of the deviance sample
+  deviance_index <- which(colnames(jags.object.base[[1]]) == "deviance")  #needs only one (can be the first) chain 
+  # print(deviance_index)
+  pars_i_sample <- as.matrix(jags.object.base)
+  # print(pars_i_sample[1])
+  if (!is.null(prec.name)) {
+    
+    pars_i_sample[, prec.name] <- log(pars_i_sample[, prec.name])
+    # print(pars_i_sample[1])
+  }
+  pars_i_sample <- pars_i_sample[, -deviance_index]
+  # print(pars_i_sample)
+  probs_i_sample <- weightFC_jags(jags.object.base, w)
+  # print(paste(probs_i_sample, 'probs')) print( probs_i_sample)
+  samples.matrix <- as.matrix(pars_i_sample, nrow = length(pars_i_sample))
+  # print(paste(samples.matrix, 'samples.matrix'))
+  means <- apply(samples.matrix, 2, expectation_fc, ISweight = probs_i_sample)
+  # print(paste(means, 'means'))
+  sds <- apply(samples.matrix, 2, sd_fc, ISweight = probs_i_sample)
+  descriptive.matrix <- cbind(means, sds)
+  
+  row.names(descriptive.matrix) <- colnames(jags.object.base[[1]])[-deviance_index]
+  
+  
+  colnames(descriptive.matrix) <- c("mean", "sd")
+  
+  return(descriptive.matrix)
+}
