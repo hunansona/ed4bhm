@@ -7,7 +7,7 @@ function(avector, delta, method) {
   #ma the mean for altered posterior
   #sda the sd for the altered posterior
   #delta for the numerical derivative computation
-  #method can be H^2
+  #method can be H^2, Bcmu, BCsd
   #OUTPUT
   ##the numerical second derivative for the given distance measures
   if (method == "H2") {

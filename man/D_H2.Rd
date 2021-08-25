@@ -1,10 +1,10 @@
 \name{D_H2}
 \alias{D_H2}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
+\title{Bhattacharyya coefficient between two normal densities
 %%  ~~function to do ... ~~
 }
-\description{
+\description{Computes the squared Hellinger distance between two normal densities parametrized by means \code{mb}, \code{ma} and standard deviations \code{sdb}, \code{sda}.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,63 +12,39 @@ D_H2(mb, sdb, ma, sda)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mb}{
+  \item{mb}{mean of the first (base) normal density
 %%     ~~Describe \code{mb} here~~
 }
-  \item{sdb}{
+  \item{sdb}{standard deviation of the first (base) normal density
 %%     ~~Describe \code{sdb} here~~
 }
-  \item{ma}{
+  \item{ma}{mean of the second (weighted) normal density
 %%     ~~Describe \code{ma} here~~
 }
-  \item{sda}{
+  \item{sda}{standard deviation of the second (weighted) normal density
 %%     ~~Describe \code{sda} here~~
 }
 }
-\details{
+\details{BC is a symmetric measure of affinity (Roos et al., 2015). 
+\deqn{BC(\pi_1(\psi | y), \pi_w(\psi | y)) = \int_{-\infty}^{\infty} \sqrt{\pi_1(\psi | y) \pi_w(\psi | y)} d \psi}.
+
+\deqn{H^2} between two normal densities is 
+\deqn{BC(\pi^N_1, \pi^N_w) = \sqrt{\frac{\sigma_1 \sigma_w}{\frac{\sigma^2_1+\sigma^2_w}{2} }} \exp ( -\frac{ (\mu_w-\mu_1)^2 }{4(\sigma^2_w + \sigma^2_1)} ),}
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
+\value{A numeric value.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+\references{Roos, M., Martins, T., Held, L., Rue, H. (2015). Sensitivity analysis for Bayesian hierarchical models. \emph{Bayesian Analysis} \bold{10}(2), 321-349. https://projecteuclid.org/euclid.ba/1422884977
 %% ~put references to the literature/web site here ~
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
+\seealso{\code{\link{D_BCsd}}, \code{\link{D_BCmu}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (mb, sdb, ma, sda) 
-{
-    Dh2 <- 1 - sqrt(2 * sdb * sda/(sdb^2 + sda^2)) * exp(-(mb - 
-        ma)^2/(4 * (sdb^2 + sda^2)))
-    return(Dh2)
-  }
+D_H2(mb=0.4, sdb=0.3, ma=0.42, sda=0.32)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

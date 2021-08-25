@@ -4,7 +4,7 @@
 \title{
 %%  ~~function to do ... ~~
 }
-\description{
+\description{This function takes the INLA fitted object from the base model as input and fits weighted INLA models with weights \eqn{w = 1 - \delta} and \eqn{w = 1 + \delta}.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,64 +12,27 @@ refit_inla(inla.object.base, delta)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object.base}{
+  \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA from the base (non-weighted) model
 %%     ~~Describe \code{inla.object.base} here~~
 }
-  \item{delta}{
+  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
 }
-\details{
+\details{To access the \code{weights} used in INLA fit use \code{inla.object.base\$.args\$weights}. The function \code{refit_inla} modifies the original model given by \code{inla.object.base} once with \code{weigts = 1-\delta} and then with \code{weigts = 1-\delta} and fits the modified models again in INLA.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
+\value{list composed of two INLA objects
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+\seealso{\code{\link{inla}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (inla.object.base, delta) 
-{
-    numdat <- ndat(inla.object.base)
-    result_m <- inla.object.base
-    result_p <- inla.object.base
-    result_m$.args$weights <- rep(1 - delta, numdat)
-    result_p$.args$weights <- rep(1 + delta, numdat)
-    inla.setOption(enable.inla.argument.weights = TRUE)
-    inla.object.altered.p <- inla.rerun(result_p, plain = TRUE)
-    inla.object.altered.m <- inla.rerun(result_m, plain = TRUE)
-    return(list(inla.object.altered.plus = inla.object.altered.p, 
-        inla.object.altered.minus = inla.object.altered.m))
-  }
+\note{Read more details regarding the \code{weights} argument in \code{\link{inla}}.
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

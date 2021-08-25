@@ -1,10 +1,10 @@
 \name{extract_quantiles_fixed_effects}
 \alias{extract_quantiles_fixed_effects}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
+\title{Extraction of quantiles for the fixed effects in INLA
 %%  ~~function to do ... ~~
 }
-\description{
+\description{This function takes an INLA object as input and extracts the quantiles (2.5\%, 50\%, 97.5\%) of the fixed effect terms.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,60 +12,21 @@ extract_quantiles_fixed_effects(inla.object)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object}{
+  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA
 %%     ~~Describe \code{inla.object} here~~
 }
 }
-\details{
+\details{This function takes an \code{inla} object as input, checks whether the fixed effects terms are available and extracts the quantiles of the fixed effects parameters.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
+\value{A matrix of numeric values for all the fixed effects parameters in rows and quantiles in columns (ncol = 3).
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
+\seealso{\code{\link{extract_quantiles_descriptives_inla}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (inla.object) 
-{
-    fixed.matrix <- NULL
-    if (nrow(inla.object$summary.fixed) != 0) {
-        fixed.matrix <- cbind(unlist(inla.object$summary.fixed["0.025quant"], 
-            use.names = TRUE), unlist(inla.object$summary.fixed["0.5quant"], 
-            use.names = TRUE), unlist(inla.object$summary.fixed["0.975quant"], 
-            use.names = TRUE))
-        row.names(fixed.matrix) <- row.names(inla.object$summary.fixed)
-    }
-    return(fixed.matrix)
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

@@ -1,6 +1,5 @@
 ed.jags <-
-function(jags.object.base, delta = 0.01, prec.name,
-                                    distance = "H2") {
+function(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name) {
   #INPUT:
   ##jags.object.base: jags fit object from the base model
   ##delta: is the numerical step and 1-delta (1+delta) is the factor you want to weight the likelihood

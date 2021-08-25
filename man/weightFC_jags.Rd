@@ -1,10 +1,10 @@
 \name{weightFC_jags}
 \alias{weightFC_jags}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
+\title{Probability weights in JAGS
 %%  ~~function to do ... ~~
 }
-\description{
+\description{Computes probability weights by fast computation in JAGS.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,62 +12,26 @@ weightFC_jags(jags.obj, w)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{jags.obj}{
+  \item{jags.obj}{character string, the name of the JAGS object fitted with \code{rjags} with the base model (non-weighted likelihood)
 %%     ~~Describe \code{jags.obj} here~~
 }
-  \item{w}{
+  \item{w}{numeric, weighting factor to weight the likelihood. \code{w} attains values close to 1.
 %%     ~~Describe \code{w} here~~
 }
 }
-\details{
+\details{A fast computation formula is derived (Hunanyan et al., 2021) to estimate the weighted samples for the model fitted in JAGS.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
+\value{numeric vector
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (in preparation)
 %% ~put references to the literature/web site here ~
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
+\seealso{\code{\link{expectation_fc}}, \code{\link{sd_fc}}, \code{\link{extract_descriptives_jags}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (jags.obj, w) 
-{
-    if (is.null(jags.obj[, "deviance"])) {
-        cat("run the jags model again to get also the deviance sample. To get the deviance sample in jags, load the module dic and add the deviance in the jags parameter list")
-    }
-    else {
-        deviance_sample <- unlist(jags.obj[, "deviance"])
-    }
-    probs_i_sample <- exp(-((w - 1) * deviance_sample)/2)
-    return(probs_i_sample)
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

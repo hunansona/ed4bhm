@@ -13,9 +13,9 @@ function(inla.object, dz = 0.75 , diff.logdens = 15 ) {
   if (!is.null(inla.object$summary.hyperpar)) {
     # if the model contains hyperparameters component, that is, if inla.object$summary.hyperpar is not NULL
     
-    # inla.object.hyp <- inla.hyperpar(inla.object, dz , diff.logdens)#, verbose = FALSE changes the result
+    inla.object.hyp <- inla.hyperpar(inla.object, dz , diff.logdens)#, verbose = FALSE changes the result
     
-    hyps <- inla.object$internal.summary.hyperpar  #inla.object.hyp$internal.summary.hyperpar
+    hyps <- inla.object.hyp$internal.summary.hyperpar  #inla.object.hyp$internal.summary.hyperpar
     
     hyperpar.list <- cbind(hyps["mean"], hyps["sd"])
     

@@ -1,10 +1,10 @@
 \name{ed.inla}
 \alias{ed.inla}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
+\title{Empirical determinacy for INLA
 %%  ~~function to do ... ~~
 }
-\description{
+\description{Calculates the total empirical determinacy (TED) and proportional empirical determinacy for location (pEDL) and for spread (pEDS) for INLA.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,74 +12,70 @@ ed.inla(inla.object.base, distance = "H2", dz, diff.logdens, delta = 0.01)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object.base}{
+  \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA with the base model (non-weighted likelihood)
 %%     ~~Describe \code{inla.object.base} here~~
 }
-  \item{distance}{
+  \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS), "H2" for TED, "BCmu" for EDL and "BCsd" for EDS. The default value is "H2ALL".
 %%     ~~Describe \code{distance} here~~
 }
-  \item{dz}{
+  \item{dz}{Step length in the standardized scale used in the construction of the grid, default 0.75.
 %%     ~~Describe \code{dz} here~~
 }
-  \item{diff.logdens}{
+  \item{diff.logdens}{The difference of the log.density for the hyperpameters to stop numerical integration using int.strategy='grid'. Default 15.
 %%     ~~Describe \code{diff.logdens} here~~
 }
-  \item{delta}{
+  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
 }
-\details{
+\details{The first element in the final returned value does not depend on the option \code{distance}. The option \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{
+\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics for each parameter in the model and the value of \eqn{\delta}. The second element of the list is the matrix of empirical determinacy measures for each parameter in the model.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (in preparation)
 %% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+\seealso{\code{\link{inla}}, \code{\link{ed}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data(eight_schools)
+#prior settings
+mean_mu<-0
+prec_mu<-1/(4^2) # Stan assumes sd=5 -> precision is equal to 1/(5^2)=0.04
+prec_tau<-1/(5^2)# distribution that is 
 
-## The function is currently defined as
-function (inla.object.base, distance = "H2", dz, diff.logdens, 
-    delta = 0.01) 
-{
-    descriptive.matrix.ls <- extract_descriptives_mbp_inla(inla.object.base, 
-        delta, dz, diff.logdens)
-    if (distance == "H2ALL") {
-        ed.result <- H2ALL(descriptive.matrix.ls)
-    }
-    else {
-        ed.result <- ed(descriptive.matrix.ls, distance)
-    }
-    rownames(ed.result) <- rownames(descriptive.matrix.ls$descriptive.matrix)
-    return(list(ed = ed.result, descriptive.matrix.ls = descriptive.matrix.ls))
-  }
+library(INLA)
+HN.prior = "expression:
+  tau0 =  1/(5^2);
+  sigma = exp(-theta/2);
+  log_dens = log(2) - 0.5 * log(2 * pi) + 0.5 * log(tau0);
+  log_dens = log_dens - 0.5 * tau0 * sigma^2;
+  log_dens = log_dens - log(2) - theta / 2;
+  return(log_dens);
+"
+
+formula.8schools.HN <- y ~ 1+f(schooln, model="iid", 
+                                      hyper = list(prec = list(prior = HN.prior)))
+
+# INLA uses the centered parametrization of the 8 schools model by default
+fit.inla.8schools <- inla(formula.8schools.HN,
+                                data = data_8schools,
+                                family = "gaussian",
+                                scale = data_8schools$prec,
+                                control.family = list(hyper=list(prec=list(initial = log(1), fixed=TRUE))),
+                                control.fixed = list(mean.intercept=mean_mu, prec.intercept=prec_mu),
+                                control.compute=list(hyperpar=TRUE),
+                                num.threads=1)
+del <- 0.01
+ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, distance = "H2ALL")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
