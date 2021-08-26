@@ -15,7 +15,7 @@ d2_interface_vector(avector, delta, method)
   \item{avector}{a numeric vector of the means and standard deviations for the base and weighted models with normal densities as posterior distrubutions. This vector has the structure c(mam, sdam, mb, sdb, map, sdap), where \code{mam} and \code{sdam} are the mean and the standard deviation from the model with likelihood weighted by a factor of \deqn{w = 1 - \delta}, \code{mb} and {sdb} are the mean and standard deviation from the base model and \code{map} and \code{sdap} are the mean and standard deviation from the model with likelihood weighted by a factor of \deqn{w = 1 + \delta}.
 %%     ~~Describe \code{avector} here~~
 }
-  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01
+  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm delta}, the default value is 0.01
 %%     ~~Describe \code{delta} here~~
 }
   \item{method}{character string, specifies the type of the distance 

@@ -3,7 +3,7 @@
 \alias{ed4bhm}
 \docType{package}
 \title{
-\packageTitle{Empirical Determinacy for Bayesian hierarchical models}
+\packageTitle{ed4bhm}
 }
 \description{
 \packageDescription{ed4bhm}
@@ -23,9 +23,9 @@ Although these investigations focused on Bayesian NNHM, the method proposed is a
 Apply ed.inla and ed.jags functions to objects provided by INLA and JAGS, respectively.
 }
 \author{
-\packageAuthor{Sona Hunanyan [aut, cre], Malgorzata Roos [aut]}
+\packageAuthor{ed4bhm}
 
-Maintainer: \packageMaintainer{Sona Hunanyan <sona.hunanyan@uzh.ch>}
+Maintainer: \packageMaintainer{ed4bhm}
 }
 \references{
 Hunanyan, S., Plummer, M., Rue, H., Roos, M., (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. Bayesian Analysis (in preparation). 
@@ -57,9 +57,9 @@ formula.8schools.HN <- y ~ 1+f(schooln, model="iid",
 
 # INLA uses the centered parametrization of the eight schools model by default
 fit.inla.8schools <- inla(formula.8schools.HN,
-                                data = data_8schools,
+                                data = eight_schools,
                                 family = "gaussian",
-                                scale = data_8schools$prec,
+                                scale = eight_schools$prec,
                                 control.family = list(hyper=list(prec=list(initial = log(1), fixed=TRUE))),
                                 control.fixed = list(mean.intercept=mean_mu, prec.intercept = prec_mu),
                                 control.compute=list(hyperpar=TRUE),

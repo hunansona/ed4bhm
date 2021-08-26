@@ -15,7 +15,7 @@ extract_descriptives_mbp_inla(inla.object.base, delta, dz, diff.logdens)
   \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA with the base model (non-weighted likelihood, \eqn{w = 1})
 %%     ~~Describe \code{inla.object.base} here~~
 }
-  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
+  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
   \item{dz}{Step length in the standardized scale used in the construction of the grid, default 0.75.
@@ -61,9 +61,9 @@ formula.8schools.HN <- y ~ 1+f(schooln, model="iid",
 
 # INLA uses the centered parametrization of the 8 schools model by default
 fit.inla.8schools <- inla(formula.8schools.HN,
-                                data = data_8schools,
+                                data = eight_schools,
                                 family = "gaussian",
-                                scale = data_8schools$prec,
+                                scale = eight_schools$prec,
                                 control.family = list(hyper=list(prec=list(initial = log(1), fixed=TRUE))),
                                 control.fixed = list(mean.intercept=mean_mu, prec.intercept=prec_mu),
                                 control.compute=list(hyperpar=TRUE),

@@ -1,5 +1,11 @@
+importFrom(coda, "as.mcmc.list", "thin", "mcmc", "as.mcmc")
+importFrom(rjags, "jags.model", "adapt", "coda.samples", "list.modules",
+           "load.module","unload.module")
+importFrom(INLA, "inla", "inla.rerun", "inla.hyperpar", "inla.setOption")
+importFrom("stats", "quantile", "sd", "update")
+
 export("D_BCmu", "D_BCsd", "D_H2", "d2_interface_vector", "ed",
-       "ed.inla", "ed.jags", "eight_schools", "expectation_fc",
+       "ed.inla", "ed.jags", "expectation_fc",
        "extract_descriptives_inla", "extract_descriptives_jags",
        "extract_descriptives_mbp_inla",
        "extract_descriptives_mbp_jags", "extract_fixed_effects",
@@ -9,4 +15,4 @@ export("D_BCmu", "D_BCsd", "D_H2", "d2_interface_vector", "ed",
        "extract_quantiles_hyperpars",
        "extract_quantiles_random_effects",
        "extract_random_effects", "H2ALL", "ndat", "refit_inla",
-       "rti", "sd_fc", "weightFC_jags")
+        "sd_fc", "weightFC_jags")

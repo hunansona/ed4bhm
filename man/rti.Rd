@@ -22,14 +22,12 @@ Meta-analysis data set including 22 randomized, controlled clinical trials on th
 
 The log odds ratio estimates and standard errors were computed using the escalc function in the package metafor using the option of adding 0.5 to all cells in tables including zeros (argument to="only0") as described in Bodnar et al. (2017).
 }
-\source{Bodnar, O., Link, A., Arendacka, B., Possolo, A., Elster, C. (2017). Bayesian estimation in random effects meta-analysis using a non-informative prior. \emph{Statistics in Medicine} \bold{36}, 378–399.
+\source{Bodnar, O., Link, A., Arendacka, B., Possolo, A., Elster, C. (2017). Bayesian estimation in random effects meta-analysis using a non-informative prior. \emph{Statistics in Medicine} \bold{36}, 378 - 399.
 }
-\references{Selective Decontamination of the Digestive Tract Trialists' Collaborative Group (1993). Meta-analysis of randomised controlled trials of selective decontamination of the digestive tract. \emph{British Medical Journal} \bold{307(6903)}, 525–532.
+\references{Selective Decontamination of the Digestive Tract Trialists' Collaborative Group (1993). Meta-analysis of randomised controlled trials of selective decontamination of the digestive tract. \emph{British Medical Journal} \bold{307(6903)}, 525 - 532.
 }
 \examples{
 data(rti)
 str(rti)
-# forest plot
-forest(x=rti$y, sei=rti$sigma, xlab="log odds ratio")
 }
 \keyword{datasets}

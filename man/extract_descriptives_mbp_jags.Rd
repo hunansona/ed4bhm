@@ -15,7 +15,7 @@ extract_descriptives_mbp_jags(jags.object.base, delta, prec.name)
   \item{jags.object.base}{character string, the name of the JAGS object fitted in \code{rjags} with the base model (non-weighted likelihood, \eqn{w = 1})
 %%     ~~Describe \code{jags.object.base} here~~
 }
-  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
+  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
   \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation
@@ -60,7 +60,7 @@ set.seed(44566)
 ###############
 
 # In JAGS the normal distribution is parametrized by its mean and precision
-jags_data<-list(y=data_8schools$y, sigma_2=data_8schools$prec, 
+jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
                 mean_mu=mean_mu, prec_mu=prec_mu, 
                 prec_tau=prec_tau)
 

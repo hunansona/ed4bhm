@@ -1,5 +1,5 @@
 extract_descriptives_mbp_inla <-
-function(inla.object.base, delta, dz, diff.logdens) {
+function(inla.object.base, delta, dz = 0.75, diff.logdens = 15) {
   #extracts the descriptive statistics for (mbp) minus, base and plus models with extract_descriptives_inla()
   #INPUT:
   ##inla.object.base is the base model fitted in inla

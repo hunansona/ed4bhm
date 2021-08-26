@@ -53,7 +53,7 @@ set.seed(44566)
 ###############
 
 # In JAGS the normal distribution is parametrized by its mean and precision
-jags_data<-list(y=data_8schools$y, sigma_2=data_8schools$prec, 
+jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
                 mean_mu=mean_mu, prec_mu=prec_mu, 
                 prec_tau=prec_tau)
 

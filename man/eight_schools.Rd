@@ -22,14 +22,14 @@ scores in eight high schools, data from a randomized study were pre-analyzed and
 supplied for a Bayesian meta-analysis.
 }
 \source{A. Gelman, J.B. Carlin, H.S. Stern, D.B. Dunson, A. Vehtari, and D.B. Rubin. Bayesian
-Data Analysis. 3rd Edition. \emph{Chapman & Hall/CRC Press}, Boca Raton, 2014.
+Data Analysis. 3rd Edition. \emph{Chapman and Hall/CRC Press}, Boca Raton, 2014.
 }
 \references{A. Gelman and J. Hill. Data Analysis Using Regression and Multilevel/Hierarchical Models.
 \emph{Cambridge University Press}, Cambridge, 2007.
 
-A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P. Burkner. Rank-normalization, 
+A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P. Burkner. Rank-normalization, 
 folding, and localization: An improved R_hat for assessing convergence of MCMC (with
-Discussion). \emph{Bayesian Analysis}, \bold{16}(2):667{718, 2021.
+Discussion). \emph{Bayesian Analysis}, \bold{16}(2):667718, 2021.
 }
 \examples{
 data(eight_schools)

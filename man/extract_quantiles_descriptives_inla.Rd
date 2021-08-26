@@ -57,9 +57,9 @@ formula.8schools.HN <- y ~ 1+f(schooln, model="iid",
 
 # INLA uses the centered parametrization of the 8 schools model by default
 fit.inla.8schools <- inla(formula.8schools.HN,
-                                data = data_8schools,
+                                data = eight_schools,
                                 family = "gaussian",
-                                scale = data_8schools$prec,
+                                scale = eight_schools$prec,
                                 control.family = list(hyper=list(prec=list(initial = log(1), fixed=TRUE))),
                                 control.fixed = list(mean.intercept=mean_mu, prec.intercept=prec_mu),
                                 control.compute=list(hyperpar=TRUE),

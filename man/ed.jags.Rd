@@ -18,7 +18,7 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
   \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS), "H2" for TED, "BCmu" for EDL and "BCsd" for EDS. The default value is "H2ALL".
 %%     ~~Describe \code{distance} here~~
 }
-  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
+  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
   \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation
@@ -64,7 +64,7 @@ set.seed(44566)
 ###############
 
 # In JAGS the normal distribution is parametrized by its mean and precision
-jags_data<-list(y=data_8schools$y, sigma_2=data_8schools$prec, 
+jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
                 mean_mu=mean_mu, prec_mu=prec_mu, 
                 prec_tau=prec_tau)
 

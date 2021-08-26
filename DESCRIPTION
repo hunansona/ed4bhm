@@ -5,9 +5,10 @@ Version: 1.0-1
 Date: 2021-08-19
 Author: Sona Hunanyan [aut, cre], Malgorzata Roos [aut]
 Maintainer: Sona Hunanyan <sona.hunanyan@uzh.ch>
-Description: More about what it does (maybe more than one line)
+Description: The popular Bayesian meta-analysis expressed by Bayesian NNHM synthesizes knowledge from several studies and is highly relevant in practice. Moreover, NNHM is the simplest Bayesian hierarchical model (BHM), which illustrates typical problems in more complex BHMs. Until now, it is unclear to what extent data determine the marginal posterior distributions of parameters in NNHM. To address this issue we computed the second derivative of Bhattacharyya coefficient with respect to the weighted likelihood, defined the total empirical determinacy (TED), and its proportion for location (pEDL) and spread (pEDS). We implemented this method in R package ed4bhm and considered two case studies and one simulation study. We focused on NNHM and quantified TED, pEDL and pEDS under different modeling conditions such as model parametrization, the primary outcome, and the prior. This clarified to what extent the location and spread of the marginal posterior distribution of parameters are determined by the data. Although these investigations focused on Bayesian NNHM, the method proposed is applicable more generally to complex BHMs. 
 License: GPL (>=2)
 Depends: R (>= 3.5.0)
 Imports: rjags (>= 3-13), coda (>= 0.13), INLA
 SystemRequirements: JAGS-4.x.y.exe (x >=0, y>=0)
 NeedsCompilation: no
+Packaged: 2021-08-26 10:49:56 UTC; Sona Hunanyan

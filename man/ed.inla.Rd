@@ -24,7 +24,7 @@ ed.inla(inla.object.base, distance = "H2", dz, diff.logdens, delta = 0.01)
   \item{diff.logdens}{The difference of the log.density for the hyperpameters to stop numerical integration using int.strategy='grid'. Default 15.
 %%     ~~Describe \code{diff.logdens} here~~
 }
-  \item{delta}{numeric, numerical differentiation step, the weighting factor w = 1 \pm delta, the default value is 0.01.
+  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
 }
@@ -69,13 +69,13 @@ formula.8schools.HN <- y ~ 1+f(schooln, model="iid",
 
 # INLA uses the centered parametrization of the 8 schools model by default
 fit.inla.8schools <- inla(formula.8schools.HN,
-                                data = data_8schools,
+                                data = eight_schools,
                                 family = "gaussian",
-                                scale = data_8schools$prec,
+                                scale = eight_schools$prec,
                                 control.family = list(hyper=list(prec=list(initial = log(1), fixed=TRUE))),
                                 control.fixed = list(mean.intercept=mean_mu, prec.intercept=prec_mu),
                                 control.compute=list(hyperpar=TRUE),
                                 num.threads=1)
 del <- 0.01
-ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, distance = "H2ALL")
+ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, dz = 0.75, diff.logdens = 15, distance = "H2ALL")
 }

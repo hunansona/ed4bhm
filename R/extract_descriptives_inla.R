@@ -1,5 +1,5 @@
 extract_descriptives_inla <-
-function(inla.object, dz, diff.logdens) {
+function(inla.object, dz = 0.75, diff.logdens = 15) {
   #INPUT:
   ##inla.object is an inla object
   ##dz , diff.logdens are arguments for the function inla.hyperpar from the INLA package
