@@ -22,7 +22,7 @@ function(jags.object.base, w, prec.name) {
   }
   pars_i_sample <- pars_i_sample[, -deviance_index]
   # print(pars_i_sample)
-  probs_i_sample <- weightFC_jags(jags.object.base, w)
+  probs_i_sample <- weight_fc_jags(jags.object.base, w)
   # print(paste(probs_i_sample, 'probs')) print( probs_i_sample)
   samples.matrix <- as.matrix(pars_i_sample, nrow = length(pars_i_sample))
   # print(paste(samples.matrix, 'samples.matrix'))

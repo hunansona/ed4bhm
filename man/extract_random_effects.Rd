@@ -12,7 +12,7 @@ extract_random_effects(inla.object)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA
+  \item{inla.object}{character string, the name of the INLA object fitted in \code{inla}
 %%     ~~Describe \code{inla.object} here~~
 }
 }

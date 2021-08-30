@@ -9,7 +9,7 @@ function(inla.object, dz = 0.75, diff.logdens = 15) {
   descriptive.matrix <- NULL
   
   fixed.matrix <- extract_fixed_effects(inla.object)
-  hyperpar.matrix <- extract_hyperpars(inla.object, dz, diff.logdens)
+  hyperpar.matrix <- extract_hyperparameters(inla.object, dz, diff.logdens)
   random.matrix <- extract_random_effects(inla.object)
   
   if (!is.null(fixed.matrix)) {

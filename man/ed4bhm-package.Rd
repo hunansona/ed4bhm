@@ -41,6 +41,8 @@ mean_mu<-0
 prec_mu<-1/(4^2) 
 prec_tau<-1/(5^2)
 
+#####################################
+##########---NNHM in INLA---#########
 library(INLA)
 HN.prior = "expression:
   tau0 =  1/(5^2);
@@ -70,4 +72,72 @@ del <- 0.01 #weighting factor w = 1 + del, w = 1 - del
 descriptives_inla_8schools <- extract_descriptives_mbp_inla(inla.obj = fit.inla.8schools, delta = del)
 #estimates the empirical determinacy measure given the base INLA fit object 
 ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, distance = "H2ALL")
+
+#####################################
+##########---NNHM in JAGS---#########
+library(rjags)
+library(coda)
+#sessionInfo()
+list.modules()
+# In order to sample from the likelihood in JAGS one has to load the "dic" module and mention "deviance" in variable.names
+load.module("dic")
+list.modules()
+
+set.seed(44566)
+
+###############
+# rjags interface with code in a model string
+###############
+
+# In JAGS the normal distribution is parametrized by its mean and precision
+jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
+                mean_mu=mean_mu, prec_mu=prec_mu, 
+                prec_tau=prec_tau)
+
+# define parameters
+schools.params.jags<-c("mu", "tau_2", "deviance")
+
+schools_centered_modelString <- "
+# likelihood
+model{
+for(i in 1:length(y)){
+y[i] ~ dnorm(theta[i], sigma_2[i])
+theta[i] ~ dnorm(mu, tau_2);
+}
+
+# priors
+mu ~ dnorm(mean_mu, prec_mu);
+tau ~ dnorm(0,prec_tau)T(0,);
+tau_2 <- 1/(tau^2);
+}
+"
+
+writeLines(schools_centered_modelString, con="TempModel.txt") # write to a file
+
+# # model initiation
+rjags.8schools  <- jags.model(
+  file = "TempModel.txt",
+  data = jags_data,
+  n.chains = 4,
+  n.adapt = 4000,
+  inits = list(list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44561),
+               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44562),
+               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44563),
+               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44564)))
+
+# burn-in
+update(rjags.8schools , n.iter = 20000)
+N.iter <- 2*(10^5)
+n.thin <- 100
+# sampling/monitoring
+fit.rjags.8schools  <- coda.samples(
+  model = rjags.8schools ,
+  variable.names = schools.params.jags,
+  n.iter = N.iter,
+  thin = n.thin)
+  
+descriptives_jags_8schools <- extract_descriptives_mbp_jags(jags.obj = fit.rjags.8schools , prec.name = "tau_2", delta = del)
+
+ed_jags_8schools <- ed.jags(jags.object.base=fit.rjags.8schools , delta = del, prec.name="tau_2", distance = "H2ALL")
+
 }

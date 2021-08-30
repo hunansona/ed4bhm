@@ -4,7 +4,7 @@
 \title{Extraction of quantiles from a JAGS object
 %%  ~~function to do ... ~~
 }
-\description{This function takes a JAGS object as input and extracts the quantiles (2.5\%, 50\%, 97.5\%) of all the model parameters.
+\description{This function takes a JAGS object as input and extracts the quantiles (2.5\%, 50\%, 97.5\%) of all the model parameters (without random effects).
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -18,11 +18,11 @@ extract_quantiles_descriptives_jags(jags.object.base, w, prec.name)
   \item{w}{numeric, the weighting factor to weight the likelihood. For the base model \eqn{w=1}.
 %%     ~~Describe \code{w} here~~
 }
-  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation
+  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation of the marginal posterior samples of the precision parameter.
 %%     ~~Describe \code{prec.name} here~~
 }
 }
-\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the quantiles of the marginal posterior distributions and has as many rows as there are parameters in the model.
+\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the corresponding quantiles of the marginal posterior distributions and has as many rows as there are parameters (without random effects) in the model.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{numerical matix

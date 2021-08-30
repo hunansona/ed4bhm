@@ -4,15 +4,15 @@ importFrom(rjags, "jags.model", "adapt", "coda.samples", "list.modules",
 importFrom(INLA, "inla", "inla.rerun", "inla.hyperpar", "inla.setOption")
 importFrom("stats", "quantile", "sd", "update")
 
-export("D_BCmu", "D_BCsd", "D_H2", "d2_interface_vector", "ed",
+export("D_BCL", "D_BCS", "D_H2", "d2_central_difference", "ed",
        "ed.inla", "ed.jags", "expectation_fc",
        "extract_descriptives_inla", "extract_descriptives_jags",
        "extract_descriptives_mbp_inla",
        "extract_descriptives_mbp_jags", "extract_fixed_effects",
-       "extract_hyperpars", "extract_quantiles_descriptives_inla",
+       "extract_hyperparameters", "extract_quantiles_descriptives_inla",
        "extract_quantiles_descriptives_jags",
        "extract_quantiles_fixed_effects",
-       "extract_quantiles_hyperpars",
+       "extract_quantiles_hyperparameters",
        "extract_quantiles_random_effects",
        "extract_random_effects", "H2ALL", "ndat", "refit_inla",
-        "sd_fc", "weightFC_jags")
+        "sd_fc", "weight_fc_jags")

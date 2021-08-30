@@ -3,8 +3,8 @@
 \docType{data}
 \title{Eight schools data
 }
-\description{Estimated effect of a coaching program on SAT-V scores y and its standard error
-(sigma) in eight schools.
+\description{Estimated effect of a coaching program on SAT-V scores \eqn{y} and its standard error
+(\eqn{\sigma}) in eight schools.
 }
 \usage{data(eight_schools)}
 \format{

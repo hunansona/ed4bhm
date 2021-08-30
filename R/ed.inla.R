@@ -1,5 +1,5 @@
 ed.inla <-
-function(inla.object.base,  distance = "H2", dz = 0.75, diff.logdens = 15,
+function(inla.object.base,  distance = "H2ALL", dz = 0.75, diff.logdens = 15,
                                     delta = 0.01) {
   #INPUT:
   #this function takes the inla fit object from the base model as input and returns the ed values as requested

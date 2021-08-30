@@ -8,11 +8,11 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-extract_descriptives_inla(inla.object, dz, diff.logdens)
+extract_descriptives_inla(inla.object, dz = 0.75, diff.logdens = 15)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA 
+  \item{inla.object}{character string, the name of the INLA object fitted in \code{inla}
 %%     ~~Describe \code{inla.object} here~~
 }
   \item{dz}{Step length in the standardized scale used in the construction of the grid, default 0.75.

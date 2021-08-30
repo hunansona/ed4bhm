@@ -12,11 +12,11 @@ extract_quantiles_fixed_effects(inla.object)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA
+  \item{inla.object}{character string, the name of the INLA object fitted in \code{inla}
 %%     ~~Describe \code{inla.object} here~~
 }
 }
-\details{This function takes an \code{inla} object as input, checks whether the fixed effects terms are available and extracts the quantiles of the fixed effects parameters.
+\details{This function takes an \code{inla} object as input, checks whether the fixed effects terms are available and extracts the corresponding quantiles of the fixed effects parameters.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{A matrix of numeric values for all the fixed effects parameters in rows and quantiles in columns (ncol = 3).

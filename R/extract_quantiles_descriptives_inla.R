@@ -9,7 +9,7 @@ function(inla.object, dz, diff.logdens) {
   descriptive.matrix <- NULL
   
   fixed.matrix <- extract_quantiles_fixed_effects(inla.object)
-  hyperpar.matrix <- extract_quantiles_hyperpars(inla.object, dz, diff.logdens)
+  hyperpar.matrix <- extract_quantiles_hyperparameters(inla.object, dz, diff.logdens)
   random.matrix <- extract_quantiles_random_effects(inla.object)
   
   if (!is.null(fixed.matrix)) {

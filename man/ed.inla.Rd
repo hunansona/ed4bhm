@@ -8,30 +8,30 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-ed.inla(inla.object.base, distance = "H2", dz, diff.logdens, delta = 0.01)
+ed.inla(inla.object.base, distance = "H2ALL", dz = 0.75, diff.logdens = 15, delta = 0.01)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA with the base model (non-weighted likelihood)
 %%     ~~Describe \code{inla.object.base} here~~
 }
-  \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS), "H2" for TED, "BCmu" for EDL and "BCsd" for EDS. The default value is "H2ALL".
+  \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2" for TED, "BCL" for EDL and "BCS" for EDS and "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS). The default value is "H2ALL".
 %%     ~~Describe \code{distance} here~~
 }
   \item{dz}{Step length in the standardized scale used in the construction of the grid, default 0.75.
 %%     ~~Describe \code{dz} here~~
 }
-  \item{diff.logdens}{The difference of the log.density for the hyperpameters to stop numerical integration using int.strategy='grid'. Default 15.
+  \item{diff.logdens}{The difference of the log.density for the hyperpameters to stop numerical integration using \code{int.strategy='grid'}. Default 15.
 %%     ~~Describe \code{diff.logdens} here~~
 }
   \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
 }
-\details{The first element in the final returned value does not depend on the option \code{distance}. The option \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
+\details{The first element in the final returned value does not depend on the value of \code{distance}. The argument \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics for each parameter in the model and the value of \eqn{\delta}. The second element of the list is the matrix of empirical determinacy measures for each parameter in the model.
+\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -44,7 +44,7 @@ ed.inla(inla.object.base, distance = "H2", dz, diff.logdens, delta = 0.01)
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{inla}}, \code{\link{ed}}
+\seealso{\code{\link{ed}}, package \code{\link{inla}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{

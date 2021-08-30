@@ -4,7 +4,7 @@
 \title{Extraction of descriptive statistics from a JAGS object for base and weighted models
 %%  ~~function to do ... ~~
 }
-\description{This function takes a JAGS object as input and extracts the descriptive statistics (mean and standard deviation) of all the model parameters for the base and weighted models.
+\description{This function takes a JAGS object as input and extracts the descriptive statistics (mean and standard deviation) of all the model parameters (without random effects) for the base and weighted models.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -18,11 +18,11 @@ extract_descriptives_mbp_jags(jags.object.base, delta, prec.name)
   \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
-  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation
+  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation of the posterior sampples for the precision parameter.
 %%     ~~Describe \code{prec.name} here~~
 }
 }
-\details{The numerical value represents \eqn{\delta}, the matrix has six columns with names ("mean.minus", "sd.minus", "mean.base", "sd.base", "mean.plus", "sd.plus") for the mean and standard deviation of the marginal posterior distributions from the models with \eqn{w = 1 - 0.01}, \eqn{w = 1} and \eqn{w = 1 + 0.01}, and has as many rows as there are parameters in the model (without random effects).
+\details{The numerical value represents \eqn{\delta}, the matrix has six columns with names ("mean.minus", "sd.minus", "mean.base", "sd.base", "mean.plus", "sd.plus") for the mean and standard deviation of the marginal posterior distributions from the models with \eqn{w = 1 - 0.01}, \eqn{w = 1} (base) and \eqn{w = 1 + 0.01}, and has as many rows as there are parameters in the model (without random effects).
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{list composed of a numerical matix and a numerical value 

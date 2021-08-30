@@ -15,7 +15,7 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
   \item{jags.object.base}{character string, the name of the JAGS object fitted with \code{rjags} with the base model (non-weighted likelihood)
 %%     ~~Describe \code{jags.object.base} here~~
 }
-  \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS), "H2" for TED, "BCmu" for EDL and "BCsd" for EDS. The default value is "H2ALL".
+  \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2" for TED, "BCL" for EDL and "BCS" for EDS and "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS). The default value is "H2ALL".
 %%     ~~Describe \code{distance} here~~
 }
   \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
@@ -25,10 +25,10 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
 %%     ~~Describe \code{prec.name} here~~
 }
 }
-\details{The first element in the final returned value does not depend on the option \code{distance}. The option \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
+\details{The first element in the final returned value does not depend on the value of \code{distance}. The argument \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics for the parameters in the model (without random effects) and the value of \eqn{\delta}. The second element of the list is the matrix of empirical determinacy measures for the parameters in the model (without random effects).
+\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -40,7 +40,7 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{rjags}}, \code{\link{ed}}
+\seealso{\code{\link{ed}}, package \code{\link{rjags}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{

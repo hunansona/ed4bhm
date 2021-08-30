@@ -12,14 +12,14 @@ extract_fixed_effects(inla.object)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA
+  \item{inla.object}{character string, the name of the INLA object fitted in \code{inla}
 %%     ~~Describe \code{inla.object} here~~
 }
 }
-\details{This function takes an \code{inla} object as input, checks whether the fixed effects terms are available and extracts the descriptive statistics (mean and standard deviation) of the fixed effects parameters.
+\details{This function takes an \code{inla} object as input, checks whether the fixed effects terms are available in the model and extracts the descriptive statistics (mean and standard deviation) of the fixed effects parameters.
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{A matrix of numeric values for all the fixed effects parameters in rows and means and sds in columns (ncol = 2).
+\value{A matrix of numeric values for all the fixed effects parameters in rows and means and standard deviations in columns (ncol = 2).
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

@@ -18,7 +18,7 @@ extract_descriptives_jags(jags.object.base, w, prec.name)
   \item{w}{numeric, the weighting factor to weight the likelihood. For the base model \eqn{w=1}.
 %%     ~~Describe \code{w} here~~
 }
-  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation
+  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation of posterior samples for the precoision parameter
 %%     ~~Describe \code{prec.name} here~~
 }
 }

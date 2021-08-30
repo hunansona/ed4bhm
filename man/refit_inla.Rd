@@ -4,7 +4,7 @@
 \title{Fitting a modified model in INLA
 %%  ~~function to do ... ~~
 }
-\description{This function takes the INLA fitted object from the base model as input and fits weighted INLA models with weights \eqn{w = 1 - \delta} and \eqn{w = 1 + \delta}.
+\description{This function takes the INLA object from the base model as input and fits weighted INLA models with weights \eqn{w = 1 - \delta} and \eqn{w = 1 + \delta}.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,14 +12,14 @@ refit_inla(inla.object.base, delta)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA from the base (non-weighted) model
+  \item{inla.object.base}{character string, the name of the INLA object fitted in \code{inla} from the base (non-weighted, \eqn{w = 1}) model
 %%     ~~Describe \code{inla.object.base} here~~
 }
   \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
 %%     ~~Describe \code{delta} here~~
 }
 }
-\details{To access the \code{weights} (\eqn{w}) used in INLA fit use \code{inla.object.base\$.args\$weights}. The function \code{refit_inla} modifies the original model given by \code{inla.object.base} once with \eqn{w = 1-\delta} and then with \eqn{w = 1-\delta} and fits the modified models again in INLA.
+\details{To access the \code{weights} (\eqn{w}) used in INLA fit use \code{inla.object.base\$.args\$weights}. The function \code{refit_inla} modifies the original model given by \code{inla.object.base}, once with \eqn{w = 1-\delta} and then with \eqn{w = 1-\delta} and fits the modified models again in INLA.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{list composed of two INLA objects

@@ -8,7 +8,7 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-extract_descriptives_mbp_inla(inla.object.base, delta, dz, diff.logdens)
+extract_descriptives_mbp_inla(inla.object.base, delta = 0.01, dz = 0.75, diff.logdens = 15)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,9 +25,9 @@ extract_descriptives_mbp_inla(inla.object.base, delta, dz, diff.logdens)
 %%     ~~Describe \code{diff.logdens} here~~
 }
 }
-\details{The numerical value represents \eqn{\delta}, the matrix has six columns with names ("mean.minus", "sd.minus", "mean.base", "sd.base", "mean.plus", "sd.plus") for the mean and standard deviation of the marginal posterior distributions from the models with \eqn{w = 1 - 0.01}, \eqn{w = 1} and \eqn{w = 1 + 0.01}, and has as many rows as there are parameters in the model.}
+\details{The numerical value represents \eqn{\delta}, the matrix has six columns with names ("mean.minus", "sd.minus", "mean.base", "sd.base", "mean.plus", "sd.plus") for the mean and standard deviation of the marginal posterior distributions from the models with \eqn{w = 1 - 0.01}, \eqn{w = 1} (base) and \eqn{w = 1 + 0.01}, and has as many rows as there are parameters in the model.}
 
-\value{list composed of a numerical matix and a numerical value 
+\value{list composed of a numerical matix and a numerical value \eqn{\delta}.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}

@@ -7,19 +7,19 @@ function(descriptive.matrix.ls) {
   #must be an output of extract_descriptives_mbp_jags() or extract_descriptives_mbp_inla()
   #
   #OUTPUT: a matrix with columns representing ed estimates for all H2 types of 
-  #5 measures c("H2total_d2", "H2mu_d2", "H2sd_d2", "qH2mu_total_d2", "qH2sd_total_d2")
+  #5 measures c("TED", "EDL", "EDS", "pEDL", "pEDS")
   
   # descriptive.matrix <- descriptive.matrix.ls[["descriptive.matrix"]]
   # delta <- descriptive.matrix.ls[["delta"]]
 
   H2ALL_matrix <- matrix(NA, nrow = nrow(descriptive.matrix.ls[["descriptive.matrix"]]), ncol = 5)
-  colnames(H2ALL_matrix) <- c("H2total_d2", "H2mu_d2", "H2sd_d2", "qH2mu_total_d2", "qH2sd_total_d2")
-  H2ALL_matrix[, "H2total_d2"] <- ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "H2")
-  H2ALL_matrix[, "H2mu_d2"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCmu")
-  H2ALL_matrix[, "H2sd_d2"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCsd")
-  H2ALL_matrix[, "qH2mu_total_d2"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCmu")/ed(descriptive.matrix.ls = descriptive.matrix.ls, 
+  colnames(H2ALL_matrix) <- c("TED", "EDL", "EDS", "pEDL", "pEDS")
+  H2ALL_matrix[, "TED"] <- ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "H2")
+  H2ALL_matrix[, "EDL"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCL")
+  H2ALL_matrix[, "EDS"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCS")
+  H2ALL_matrix[, "pEDL"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCL")/ed(descriptive.matrix.ls = descriptive.matrix.ls, 
                                                                                                                distance = "H2")
-  H2ALL_matrix[, "qH2sd_total_d2"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCsd")/ed(descriptive.matrix.ls = descriptive.matrix.ls, 
+  H2ALL_matrix[, "pEDS"] <- -ed(descriptive.matrix.ls = descriptive.matrix.ls, distance = "BCS")/ed(descriptive.matrix.ls = descriptive.matrix.ls, 
                                                                                                                distance = "H2")
   
   return(H2ALL_matrix)

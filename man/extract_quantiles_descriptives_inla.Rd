@@ -22,7 +22,7 @@ extract_quantiles_descriptives_inla(inla.object, dz, diff.logdens)
 %%     ~~Describe \code{diff.logdens} here~~
 }
 }
-\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the quantiles of the marginal posterior distributions and has as many rows as there are parameters in the model.
+\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the corresponding quantiles of the marginal posterior distributions and has as many rows as there are parameters in the model.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{numerical matix
