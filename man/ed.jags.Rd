@@ -28,7 +28,7 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
 \details{The first element in the final returned value does not depend on the value of \code{distance}. The argument \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
+\value{A list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -47,13 +47,14 @@ ed.jags(jags.object.base, distance = "H2ALL", delta = 0.01, prec.name)
 data(eight_schools)
 #prior settings
 mean_mu<-0
-prec_mu<-1/(4^2) # Stan assumes sd=5 -> precision is equal to 1/(5^2)=0.04
-prec_tau<-1/(5^2)# distribution that is 
+prec_mu<-1/(4^2) 
+prec_tau<-1/(5^2)
 
 library(rjags)
 #sessionInfo()
 list.modules()
-# In order to sample from the likelihood in JAGS one has to load the "dic" module and mention "deviance" in variable.names
+# In order to sample from the likelihood in JAGS one has to load the "dic" module and 
+#mention "deviance" in variable.names
 load.module("dic")
 list.modules()
 

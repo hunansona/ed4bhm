@@ -31,7 +31,7 @@ D_BCL(mb, sdb, mw, sdw)
 }
 \value{A numeric value
 }
-\references{Roos, M., Hunanyan, S., Bakka, H., Rue, H. (2021). Sensitivity and identification quantification by a relative latent model complexity perturbation in the Bayesian meta-analysis. \emph{Biometrical Journal}.
+\references{Roos, M., Hunanyan, S., Bakka, H., Rue, H. (2021). Sensitivity and identification quantification by a relative latent model complexity perturbation in the Bayesian meta-analysis. \emph{Biometrical Journal}. URL https://doi.org/10.1002/bimj.202000193
 %% ~put references to the literature/web site here ~
 }
 

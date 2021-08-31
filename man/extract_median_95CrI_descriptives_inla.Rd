@@ -1,22 +1,19 @@
-\name{extract_descriptives_mbp_inla}
-\alias{extract_descriptives_mbp_inla}
+\name{extract_median_95CrI_descriptives_inla}
+\alias{extract_median_95CrI_descriptives_inla}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Extraction of descriptive statistics from an INLA object for base and weighted models
+\title{Extraction of median and the equi-tailed 95\% CrI from an INLA object
 %%  ~~function to do ... ~~
 }
-\description{This function takes an INLA object as input and extracts the descriptive statistics (mean and standard deviation) of all the model parameters for the base and weighted models.
+\description{This function takes an INLA object as input and extracts the median and the equi-tailed 95\% CrI of all the model parameters.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-extract_descriptives_mbp_inla(inla.object.base, delta = 0.01, dz = 0.75, diff.logdens = 15)
+extract_median_95CrI_descriptives_inla(inla.object, dz, diff.logdens)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{inla.object.base}{character string, the name of the INLA object fitted in R-INLA with the base model (non-weighted likelihood, \eqn{w = 1})
-%%     ~~Describe \code{inla.object.base} here~~
-}
-  \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.
-%%     ~~Describe \code{delta} here~~
+  \item{inla.object}{character string, the name of the INLA object fitted in R-INLA 
+%%     ~~Describe \code{inla.object} here~~
 }
   \item{dz}{Step length in the standardized scale used in the construction of the grid, default 0.75.
 %%     ~~Describe \code{dz} here~~
@@ -25,22 +22,21 @@ extract_descriptives_mbp_inla(inla.object.base, delta = 0.01, dz = 0.75, diff.lo
 %%     ~~Describe \code{diff.logdens} here~~
 }
 }
-\details{The numerical value represents \eqn{\delta}, the matrix has six columns with names ("mean.minus", "sd.minus", "mean.base", "sd.base", "mean.plus", "sd.plus") for the mean and standard deviation of the marginal posterior distributions from the models with \eqn{w = 1 - 0.01}, \eqn{w = 1} (base) and \eqn{w = 1 + 0.01}, and has as many rows as there are parameters in the model.}
-
-\value{list composed of a numerical matix and a numerical value \eqn{\delta}.
+\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the median and the equi-tailed 95\% CrI of the marginal posterior distributions and has as many rows as there are parameters in the model.
+%%  ~~ If necessary, more details than the description above ~~
+}
+\value{numerical matix
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{\code{\link{extract_descriptives_inla}}
+\seealso{\code{\link{inla}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{data(eight_schools)
+\examples{
+data(eight_schools)
 #prior settings
 mean_mu<-0
 prec_mu<-1/(4^2) 
@@ -68,9 +64,9 @@ fit.inla.8schools <- inla(formula.8schools.HN,
                                 control.fixed = list(mean.intercept=mean_mu, prec.intercept=prec_mu),
                                 control.compute=list(hyperpar=TRUE),
                                 num.threads=1)
-                                
-del <- 0.01
-descriptives_inla_8schools <- extract_descriptives_mbp_inla(inla.obj = fit.inla.8schools, delta = del)
+
+descriptives_median_95CrI_inla_8schools <- extract_median_95CrI_descriptives_inla(inla.obj = fit.inla.8schools)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

@@ -31,7 +31,7 @@ ed.inla(inla.object.base, distance = "H2ALL", dz = 0.75, diff.logdens = 15, delt
 \details{The first element in the final returned value does not depend on the value of \code{distance}. The argument \code{distance} = "H2ALL" provides a list, where the second element of the list is a matrix of five empirical determinacy measures. 
 %%  ~~ If necessary, more details than the description above ~~
 }
-\value{a list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
+\value{A list of length two. The first element of the list is a list containing the matrix of descriptive statistics (mean and standard deviation) for each parameter in the model and the value of \eqn{\delta}. The second element of the list is a matrix of empirical determinacy measures for each parameter in the model. This matrix has columns \code{c("TED", "EDL", "EDS", "pEDL", "pEDS")} when \code{distance = "H2ALL"}.
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -51,8 +51,8 @@ ed.inla(inla.object.base, distance = "H2ALL", dz = 0.75, diff.logdens = 15, delt
 data(eight_schools)
 #prior settings
 mean_mu<-0
-prec_mu<-1/(4^2) # Stan assumes sd=5 -> precision is equal to 1/(5^2)=0.04
-prec_tau<-1/(5^2)# distribution that is 
+prec_mu<-1/(4^2)
+prec_tau<-1/(5^2)
 
 library(INLA)
 HN.prior = "expression:
@@ -77,5 +77,6 @@ fit.inla.8schools <- inla(formula.8schools.HN,
                                 control.compute=list(hyperpar=TRUE),
                                 num.threads=1)
 del <- 0.01
-ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, dz = 0.75, diff.logdens = 15, distance = "H2ALL")
+ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, dz = 0.75, 
+                            diff.logdens = 15, distance = "H2ALL")
 }

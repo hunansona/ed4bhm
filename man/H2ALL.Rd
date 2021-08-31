@@ -1,7 +1,7 @@
 \name{H2ALL}
 \alias{H2ALL}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Empirical determinacy estimates for all H2 types of measures
+\title{Empirical determinacy estimates based on the squared Hellinger distance (H2)
 %%  ~~function to do ... ~~
 }
 \description{This function calculates a matrix with columns representing empirical determiancy measure estimates for all squared Hellinger (H2) distance types of five measures, which are TED, EDL, EDS, pEDL and pEDS defined in Hunanyat et al., 2021.

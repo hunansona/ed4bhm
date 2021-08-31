@@ -41,15 +41,16 @@ extract_descriptives_mbp_jags(jags.object.base, delta, prec.name)
 data(eight_schools)
 #prior settings
 mean_mu<-0
-prec_mu<-1/(4^2) # Stan assumes sd=5 -> precision is equal to 1/(5^2)=0.04
-prec_tau<-1/(5^2)# distribution that is 
+prec_mu<-1/(4^2) 
+prec_tau<-1/(5^2)
 
 ##########################################################
 library(rjags)
 library(coda)
 #sessionInfo()
 list.modules()
-# In order to sample from the likelihood in JAGS one has to load the "dic" module and mention "deviance" in variable.names
+# In order to sample from the likelihood in JAGS one has to load the "dic" module and 
+#mention "deviance" in variable.names
 load.module("dic")
 list.modules()
 
@@ -108,7 +109,8 @@ fit.rjags.8schools <- coda.samples(
 
 del = 0.01
 
-descriptives_jags_8schools <- extract_descriptives_mbp_jags(jags.obj = fit.rjags.8schools , prec.name = "tau_2", delta = del)
+descriptives_jags_8schools <- extract_descriptives_mbp_jags(jags.obj = fit.rjags.8schools, 
+                                                          prec.name = "tau_2", delta = del)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

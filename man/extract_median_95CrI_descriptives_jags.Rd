@@ -1,39 +1,28 @@
-\name{extract_descriptives_jags}
-\alias{extract_descriptives_jags}
+\name{extract_median_95CrI_descriptives_jags}
+\alias{extract_median_95CrI_descriptives_jags}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Extraction of descriptive statistics from a JAGS object
+\title{Extraction of the median and the equi-tailed 95\% CrI from a JAGS object
 %%  ~~function to do ... ~~
 }
-\description{This function takes a JAGS object as input and extracts the descriptive statistics (mean and standard deviation) of all the model parameters.
+\description{This function takes a JAGS object as input and extracts the median and the equi-tailed 95\% CrI of all the model parameters (without random effects).
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-extract_descriptives_jags(jags.object.base, w, prec.name)
+extract_median_95CrI_descriptives_jags(jags.object.base, w, prec.name)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{jags.object.base}{character string, the name of the JAGS object fitted in \code{rjags} with the base model (non-weighted likelihood)
-%%     ~~Describe \code{jags.object.base} here~~
+  \item{jags.object.base}{character string, the name of the JAGS object fitted in \code{rjags} 
 }
   \item{w}{numeric, the weighting factor to weight the likelihood. For the base model \eqn{w=1}.
-%%     ~~Describe \code{w} here~~
 }
-  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation of posterior samples for the precoision parameter
-%%     ~~Describe \code{prec.name} here~~
+  \item{prec.name}{character string, the name of the precision parameter to be used for logarithmic transformation of the marginal posterior samples of the precision parameter.
 }
 }
-\value{numerical matix, the matrix has two columns with names "mean" and "sd" for the mean and standard deviation of the marginal posterior distributions and has as many rows as there are parameters in the model (without random effects)
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+\details{The returned matrix has three columns with names "0.025quant", "0.5quant" and "0.975quant" for the median and the equi-tailed 95\% CrI of the marginal posterior distributions and has as many rows as there are parameters (without random effects) in the model.
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
+\value{numerical matix
+}
 \seealso{\code{\link{rjags}}
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 data(eight_schools)
@@ -59,12 +48,12 @@ set.seed(44566)
 ###############
 
 # In JAGS the normal distribution is parametrized by its mean and precision
-jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
+jags_data <- list(y=eight_schools$y, sigma_2=eight_schools$prec, 
                 mean_mu=mean_mu, prec_mu=prec_mu, 
                 prec_tau=prec_tau)
 
 # define parameters
-schools.params.jags<-c("mu", "tau_2", "deviance")
+schools.params.jags <- c("mu", "tau_2", "deviance")
 
 schools_centered_modelString <- "
 # likelihood
@@ -106,15 +95,6 @@ fit.rjags.8schools <- coda.samples(
   thin = n.thin)
 
 del = 0.01
-descriptives_jags_8schools <- extract_descriptives_jags(jags.obj = fit.rjags.8schools, 
-                                                        w = 1+0.01, prec.name = "tau_2")
+descriptives_median_95CrI_jags_8schools <- extract_median_95CrI_descriptives_jags(jags.obj = fit.rjags.8schools,
+                                            w = 1, prec.name = "tau_2")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

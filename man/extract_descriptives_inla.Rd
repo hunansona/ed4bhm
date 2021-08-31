@@ -42,8 +42,8 @@ extract_descriptives_inla(inla.object, dz = 0.75, diff.logdens = 15)
 data(eight_schools)
 #prior settings
 mean_mu<-0
-prec_mu<-1/(4^2) # Stan assumes sd=5 -> precision is equal to 1/(5^2)=0.04
-prec_tau<-1/(5^2)# distribution that is 
+prec_mu<-1/(4^2) 
+prec_tau<-1/(5^2)
 
 library(INLA)
 HN.prior = "expression:
