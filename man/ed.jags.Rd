@@ -110,5 +110,8 @@ fit.rjags.8schools  <- coda.samples(
   variable.names = schools.params.jags,
   n.iter = N.iter,
   thin = n.thin)
+  
+ed_jags_8schools <- ed.jags(jags.object.base = fit.rjags.8schools, distance = "H2ALL",
+                            delta = 0.01, prec.name="tau_2")
 
 }
