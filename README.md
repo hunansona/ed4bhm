@@ -15,3 +15,4 @@ You might need
 > Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")
 > install_github("hunansona/ed4bhm") 
 
+

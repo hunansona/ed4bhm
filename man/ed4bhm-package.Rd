@@ -11,25 +11,9 @@
 \details{
 
 The DESCRIPTION file:
-\packageDESCRIPTION{The popular Bayesian meta-analysis expressed by Bayesian NNHM synthesizes 
-knowledge from several studies and is highly relevant in practice. 
-Moreover, NNHM is the simplest Bayesian hierarchical model (BHM), which illustrates typical 
-problems in more complex BHMs.
-Until now, it is unclear to what extent data determine the marginal posterior distributions 
-of parameters in NNHM. 
-To address this issue we computed the second derivative of Bhattacharyya coefficient with 
-respect to the weighted likelihood, defined the total empirical determinacy (TED), and 
-its proportion for location (pEDL) and spread (pEDS).
-We implemented this method in R package ed4bhm and considered two case studies and one 
-simulation study.
-We focused on NNHM and quantified TED, pEDL and pEDS under different modeling conditions 
-such as model parametrization, the primary outcome, and the prior.
-This clarified to what extent the location and spread of the marginal posterior distribution 
-of parameters are determined by the data.
-Although these investigations focused on Bayesian NNHM, the method proposed is applicable 
-more generally to complex BHMs.}
+\packageDESCRIPTION{Until now, it is unclear to what extent data determine the marginal posterior distributions of parameters of Bayesian hierarchical models (BHM). To address this issue we compute the second derivative of the Bhattacharyya coefficient with respect to the weighted likelihood, defined the total empirical determinacy (TED), and its proportion for location (pEDL) and spread (pEDS). This method is implemented in the R package ed4bhm for BHMs fit by INLA, JAGS, and Stan. The empirical determinacy estimates (TED, pEDL, pEDS) clarify to what extent the location and spread of the marginal posterior distribution of parameters are determined by the data. Moreover, we provide bootstrap-based Monte Carlo standard errors of empirical determinacy estimates based on MCMC samples provided by JAGS and Stan.}
 \packageIndices{ed4bhm}
-Apply ed.inla and ed.jags functions to objects provided by INLA and JAGS, respectively.
+Apply ed.inla, ed.jags, and ed.stan functions to objects provided by INLA, JAGS, and Stan, respectively.
 }
 \author{
 \packageAuthor{ed4bhm}
@@ -37,7 +21,9 @@ Apply ed.inla and ed.jags functions to objects provided by INLA and JAGS, respec
 Maintainer: \packageMaintainer{ed4bhm}
 }
 \references{
-Hunanyan, S., Plummer, M., Rue, H., Roos, M., (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. Bayesian Analysis (in preparation). 
+Hunanyan, S., Plummer, M., Rue, H., Roos, M., (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. Bayesian Analysis (under review). https://arxiv.org/abs/2109.11870. 
+
+Hunanyan, S. and Kazantzidis, G. and Rue, H. and Roos, M (2021). Empirical determinacy in the {B}ayesian logistic regression in the presence of separation in the data. (in preparation).
 }
 \keyword{ Empirical determinacy }
 \examples{

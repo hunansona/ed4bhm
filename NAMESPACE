@@ -1,8 +1,11 @@
-importFrom(coda, "as.mcmc.list", "thin", "mcmc", "as.mcmc")
+importFrom(coda, "as.mcmc.list", "thin", "mcmc", "as.mcmc", "mcmc.list")
 importFrom(rjags, "jags.model", "adapt", "coda.samples", "list.modules",
            "load.module","unload.module")
 importFrom(INLA, "inla", "inla.rerun", "inla.hyperpar", "inla.setOption")
-importFrom("stats", "quantile", "sd", "update")
+importFrom("stats", "quantile", "sd", "update", "var", "qnorm")
+importFrom("graphics", "par", "segments", "axis")
+importFrom(rstan, "stan_model", "sampling")
+importFrom("runjags", "combine.mcmc")
 
 export("D_BCL", "D_BCS", "D_H2", "d2_central_difference", "ed",
        "ed.inla", "ed.jags", "expectation_fc",
@@ -15,4 +18,7 @@ export("D_BCL", "D_BCS", "D_H2", "d2_central_difference", "ed",
        "extract_median_95CrI_hyperparameters",
        "extract_median_95CrI_random_effects",
        "extract_random_effects", "H2ALL", "ndat", "refit_inla",
-        "sd_fc", "weight_fc_jags")
+        "sd_fc", "weight_fc_jags", "ed.stan.input", "ed.stan.matrix", "ed.stan",
+       "ed.stan.stanfit", "extract_descriptives_mbp_stan", "extract_descriptives_stan",
+       "Lwm1_stan", "mce.ed.matrix", "mce.ed.mcmc.list", "mce.ed", "mce.ed.stanfit",
+       "mcmc_convert", "plot.mce.ed")

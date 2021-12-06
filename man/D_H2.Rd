@@ -44,7 +44,7 @@ BC between two normal densities reads
 
 Roos, M., Hunanyan, S., Bakka, H., Rue, H. (2021). Sensitivity and identification quantification by a relative latent model complexity perturbation in the Bayesian meta-analysis. \emph{Biometrical Journal}. URL https://doi.org/10.1002/bimj.202000193
 
-Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (in preparation)
+Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (under review). https://arxiv.org/abs/2109.11870.
 }
 \seealso{\code{\link{D_BCS}}, \code{\link{D_BCL}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~

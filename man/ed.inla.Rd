@@ -38,7 +38,7 @@ ed.inla(inla.object.base, distance = "H2ALL", dz = 0.75, diff.logdens = 15, delt
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (in preparation)
+\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (under review). https://arxiv.org/abs/2109.11870.
 %% ~put references to the literature/web site here ~
 }
 

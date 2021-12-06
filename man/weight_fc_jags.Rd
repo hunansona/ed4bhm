@@ -29,7 +29,7 @@ weight_fc_jags(jags.obj, w)
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (in preparation)
+\references{Hunanyan, S., Roos, M., Plummer, M., Rue, H. (2021). Quantification of empirical determinacy: the impact of likelihood weighting on posterior location and spread in Bayesian meta-analysis estimated with JAGS and INLA. \emph{Bayesian Analaysis} (under review). https://arxiv.org/abs/2109.11870.
 %% ~put references to the literature/web site here ~
 }
 \seealso{\code{\link{expectation_fc}}, \code{\link{sd_fc}}, \code{\link{extract_descriptives_jags}}
