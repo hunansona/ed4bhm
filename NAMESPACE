@@ -22,3 +22,10 @@ export("D_BCL", "D_BCS", "D_H2", "d2_central_difference", "ed",
        "ed.stan.stanfit", "extract_descriptives_mbp_stan", "extract_descriptives_stan",
        "Lwm1_stan", "mce.ed.matrix", "mce.ed.mcmc.list", "mce.ed", "mce.ed.stanfit",
        "mcmc_convert", "plot.mce.ed")
+
+S3method("mce.ed", "mcmc.list")
+S3method("mce.ed", "matrix")
+S3method("mce.ed", "stanfit")
+S3method("ed.stan", "stanfit")
+S3method("ed.stan", "matrix")
+S3method("plot", "mce.ed")
