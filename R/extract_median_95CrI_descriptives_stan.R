@@ -2,11 +2,11 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
                                                    w, prec.name= NULL) {
   m.names <- colnames(stan.object.base.modified)  
   
-  # find lp__
-  lp_index <- which(m.names == "lp__") 
-  if(length(lp_index)==0) {
-    cat("Provide lp__ either directly from Stan or evaluate the log-likelihood at sampled parameters, 
-        calls this vector lp__, and pass lp__ and MCMC sample as a matrix")
+  # find ll
+  ll_index <- which(m.names == "ll") 
+  if(length(ll_index)==0) {
+    cat("Provide ll either directly from Stan or evaluate the log-likelihood at sampled parameters, 
+        calls this vector ll, and pass ll and MCMC sample as a matrix")
   } else {
     
     
@@ -15,11 +15,11 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
     if (is.null(prec.name)){
       
       # extract samples that do not need any transformation
-      mm <- stan.object.base.modified[, -lp_index]
-      mm.names<-m.names[-lp_index]
+      mm <- stan.object.base.modified[, -ll_index]
+      mm.names<-m.names[-ll_index]
       
-      # extract lp__
-      dm <- stan.object.base.modified[, lp_index] # lp__
+      # extract ll
+      dm <- stan.object.base.modified[, ll_index] # ll
       
       # collect samples for further computations
       samples.matrix <- as.matrix(mm)
@@ -30,8 +30,8 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
                                    nrow = length( mm.names ), ncol = 3,
                                    dimnames = list(mm.names, c("0.025quant", "0.5quant", "0.975quant")) )
       
-      # wigthting of the likelihood given lp__
-      Lwm1_value <- Lwm1_stan(stan_lp = dm, ww = w) 
+      # wigthting of the likelihood given ll
+      Lwm1_value <- Lwm1_stan(stan_ll = dm, ww = w) 
       #  normalizing constant
       cte_stan <- sum( Lwm1_value / length( Lwm1_value ) )
       # new probability assigned to each observation which is used for the computation of descritive statistics
@@ -58,8 +58,8 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
       }
       
       # extract samples that do not need any transformation
-      mm <- stan.object.base.modified[, -c(lp_index, prec_index)]
-      mm.names<-m.names[-c(lp_index, prec_index)]
+      mm <- stan.object.base.modified[, -c(ll_index, prec_index)]
+      mm.names<-m.names[-c(ll_index, prec_index)]
       
       # extract and log-transform samples that mast be log-transformed
       if(length( prec_index ) > 0){
@@ -73,8 +73,8 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
         lm.names <- NULL
       }
       
-      # extract lp__
-      dm <- stan.object.base.modified[, lp_index] # lp__
+      # extract ll
+      dm <- stan.object.base.modified[, ll_index] # ll
       
       # collect samples for further computations
       samples.matrix <- as.matrix( cbind(mm, lm) )
@@ -85,8 +85,8 @@ extract_median_95CrI_descriptives_stan <- function(stan.object.base.modified,
       rownames(descriptive.matrix)<-c(mm.names, lm.names)
       colnames(descriptive.matrix)<-c("0.025quant", "0.5quant", "0.975quant")
       
-      # weigthting of the likelihood given lp__
-      Lwm1_value <- Lwm1_stan(stan_lp = dm, ww = w) 
+      # weigthting of the likelihood given ll
+      Lwm1_value <- Lwm1_stan(stan_ll = dm, ww = w) 
       #  normalizing constant
       cte_stan <- sum(Lwm1_value / length( Lwm1_value ))
       # new probability assigned to each observation which is used for the computation of descritive statistics
