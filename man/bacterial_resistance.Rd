@@ -7,9 +7,10 @@
 }
 \usage{data(bacterial_resistance)}
 \format{
-  A data frame with 5688 observations on the following 4 variables.
+  A data frame with 35 observations on the following 8 variables.
   \describe{
     \item{\code{IZD}}{numeric, Inhibition zone diameter (IZD) values in (mm). IZD can attain values between 6 (mm) and 40 (mm).}
+    \item{\code{scIZD}}{numeric, Inhibition zone diameter (IZD) values scaled to have mean 0 and standard deviation 1.}
     \item{\code{ncrowt}}{numeric, counts for the wilde-type isolates for the antibiotic CRO.}
     \item{\code{ncroesbl}}{numeric, counts for the ESBL isolates for the antibiotic CRO.}
     \item{\code{nipmwt}}{numeric, counts for the wilde-type isolates for the antibiotic IPM.}
