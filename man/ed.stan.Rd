@@ -38,4 +38,3 @@ Malgorzata Roos, Georgios Kazantzidis, Sona Hunanyan
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
