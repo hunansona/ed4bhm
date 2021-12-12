@@ -50,7 +50,6 @@ extract_descriptives_stan <- function(stan.object.base.modified, w, prec.name= N
       
       # weigthting of the likelihood given ll
       Lwm1_value <- Lwm1_stan(stan_ll = dm, ww = w) 
-      print(Lwm1_value)
       #  normalizing constant
       cte_stan <- sum( Lwm1_value / length( Lwm1_value ) )
       # new probability assigned to each observation which is used for the computation of descritive statistics
