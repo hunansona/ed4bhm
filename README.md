@@ -9,6 +9,8 @@ How to install an R package that is sitting on github to R (for example, from Rs
 
 > install.packages("devtools")
 > library("devtools")
+> install.packages("withr")
+> library(withr)
 > install_github("hunansona/ed4bhm") 
 
 You might need 

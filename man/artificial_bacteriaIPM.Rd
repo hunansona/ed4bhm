@@ -13,7 +13,7 @@
     \item{\code{scIZD}}{numeric, scaled IZD values to have mean 0 and standard deviation 1}
     \item{\code{nipmwt}}{numeric, counts of the wild-type isolates for the antibiotic IPM }
     \item{\code{nipmesbl}}{numeric, counts of the ESBL isolates for the antibiotic IPM}
-    \item{\code{nipmesbl1 ... nipmesbl19}}{numeric, artificial counts of the ESBL isolates for the antibiotic IPM}
+    \item{\code{nipmesbl1,...,nipmesbl19}}{numeric, artificial counts of the ESBL isolates for the antibiotic IPM}
   }
 }
 \details{We have generates artificial dataset given the data corresponding to antibiotic IPM in \code{\link{bacterial_resistance}}. Artificially generated columns \code{nipmesbl1} \eqn{\ldots} \code{nipmesbl19} ensure different separation levels in the data.

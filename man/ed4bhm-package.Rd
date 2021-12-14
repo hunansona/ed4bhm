@@ -69,9 +69,11 @@ fit.inla.8schools <- inla(formula.8schools.HN,
 
 del <- 0.01 #weighting factor w = 1 + del, w = 1 - del
 #estimates the matrix of descriptive statistics given INLA base fit object
-descriptives_inla_8schools <- extract_descriptives_mbp_inla(inla.obj = fit.inla.8schools, delta = del)
+descriptives_inla_8schools <- extract_descriptives_mbp_inla(inla.obj = fit.inla.8schools, 
+                              delta = del)
 #estimates the empirical determinacy measure given the base INLA fit object 
-ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, distance = "H2ALL")
+ed_inla_8schools <- ed.inla(inla.object.base = fit.inla.8schools, delta = del, 
+                            distance = "H2ALL")
 
 #####################################
 ##########---NNHM in JAGS---#########
@@ -89,7 +91,6 @@ set.seed(44566)
 ###############
 # rjags interface with code in a model string
 ###############
-
 # In JAGS the normal distribution is parametrized by its mean and precision
 jags_data<-list(y=eight_schools$y, sigma_2=eight_schools$prec, 
                 mean_mu=mean_mu, prec_mu=prec_mu, 
@@ -121,10 +122,14 @@ rjags.8schools  <- jags.model(
   data = jags_data,
   n.chains = 4,
   n.adapt = 4000,
-  inits = list(list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44561),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44562),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44563),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44564)))
+  inits = list( list(mu = 3.1, tau = 3.117181, 
+                .RNG.name = "base::Wichmann-Hill", .RNG.seed = 314159),
+                list(mu = 3.3, tau = 2.517181, 
+                .RNG.name = "base::Marsaglia-Multicarry", .RNG.seed = 159314),
+                list(mu = 3.6, tau = 3.317181, 
+                .RNG.name = "base::Super-Duper", .RNG.seed = 413159),
+                list(mu = 3.8, tau = 2.317181,  
+                .RNG.name = "base::Mersenne-Twister", .RNG.seed = 143915)))
 
 # burn-in
 update(rjags.8schools , n.iter = 20000)
@@ -138,9 +143,97 @@ fit.rjags.8schools  <- coda.samples(
   thin = n.thin)
   
 descriptives_jags_8schools <- extract_descriptives_mbp_jags(jags.obj = fit.rjags.8schools , 
-prec.name = "tau_2", delta = del)
+                              prec.name = "tau_2", delta = del)
 
-ed_jags_8schools <- ed.jags(jags.object.base=fit.rjags.8schools , delta = del, prec.name="tau_2", 
-distance = "H2ALL")
+ed_jags_8schools <- ed.jags(jags.object.base=fit.rjags.8schools , delta = del, 
+                            prec.name="tau_2", distance = "H2ALL")
+
+############################################################
+##########---Bayesian logisic regression in Stan---#########
+data("bacterial_resistance")
+df_ipm <- data.frame(cbind(bacterial_resistance$scIZD, bacterial_resistance$nipmesbl, 
+                           bacterial_resistance$nipmwt))
+colnames(df_ipm) <- c("scIZD", "nipmesbl", "nipmwt")
+
+###################---Stan with binomial data---------########
+params <- c("alpha","beta", "ll_gq")
+
+stan_data_aggregated <- list(N=nrow(df_ipm), y =  df_ipm$nipmesbl, 
+                             total = df_ipm$nipmesbl+df_ipm$nipmwt,
+                             x1 = as.numeric(df_ipm$scIZD))
+
+
+stan_inits <- list(list(alpha = -1.498195, beta = -0.3731706),
+                   list(alpha = -1.398195, beta = -0.2731706),
+                   list(alpha = -1.460195, beta = -0.3351706),
+                   list(alpha = -1.436195, beta = -0.3111706))
+library(rstan)
+
+## Content of the Stan model
+modelString = " // open quote for modelString
+data {
+int<lower=0> N;             // number of observations
+int<lower=0> y[N];  // setting the dependent variable y as binomial
+vector[N] x1;                // independent variable x1
+int<lower=0> total[N]; // total observation for each x1
+}
+
+parameters {
+real alpha; // logistic regression intercept
+real beta; // logistic regression slope
+}
+
+model {
+y ~ binomial_logit(total, alpha + beta*x1); 
+// model for the logistic regression with a an aggregated binomial outcome
+alpha ~ normal(0, 10);
+beta ~ normal(0, 2.5);
+}
+generated quantities {
+real ll_gq;
+vector[N] log_lik;
+
+for (n in 1:N) log_lik[n] = binomial_logit_lpmf(y[n] | total[n], alpha + 
+                              x1[n] * beta );
+ll_gq = sum(log_lik);
+}
+" # close quote for modelString
+
+# Translate model to C++ and compile to DSO (dynamic shared object):
+model_stanDSO <- stan_model(model_code = modelString)
+
+
+fit.rstan_ipm <- sampling(
+  object = model_stanDSO,
+  data = stan_data_aggregated,
+  pars = params,
+  chains = 4,
+  iter = 6*(10^3),
+  warmup = 2*(10^3),
+  thin = 100,
+  seed = 1234,
+  init = stan_inits)
+
+fit.rstan_ipm_m <- as.matrix(fit.rstan_ipm)
+
+#put the MCMC sample and the log-likelihood computed by hand together in a matrix
+fit.rstan_ipm_m_ll <- as.matrix(cbind(fit.rstan_ipm_m[, c("alpha", "beta", "ll_gq")])) 
+
+#change the name of the calumn containing the log-likelihood computed by
+#the generated quantities block in Stan by ll
+colnames(fit.rstan_ipm_m_ll) <- c("alpha", "beta", "ll") 
+
+#the median and the 95\% CrIs of the posterior parameters
+desc95_stan_ipm <- extract_median_95CrI_descriptives_stan(fit.rstan_ipm_m_ll, w = 1, 
+                                                          prec.name = NULL)
+
+#empirical determinacy estimates
+ed_stan_ipm <- ed.stan(stan.object.base = fit.rstan_ipm_m_ll, 
+                      distance = "H2ALL", delta = 0.01, prec.name=NULL)
+
+#Monte Carlo standard error for empirical determinacy estimates
+mce_ed_stan_ipm <- mce.ed(object = fit.rstan_ipm_m_ll, 
+                                  B = 200, distance = "H2ALL", 
+                                  delta = 0.01, prec.name = NULL)
 
 }

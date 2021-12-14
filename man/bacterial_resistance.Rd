@@ -3,14 +3,14 @@
 \docType{data}
 \title{Bacterial resistance data
 }
-\description{Strains of \textit{E. coli}, which were isolated from 2010 until 2014 in the laboratory of the Institute for Medical Microbiology at the University of Zurich, are considered. Inhibition zone diameter (IZD) values in (mm) for the antibiotics Amoxicillin-clavulanic acid (AMC), Ceftriaxone (CRO), and Imipenem (IPM). IZD can attain values between 6 (mm) and 40 (mm).
+\description{Strains of \emph{E. coli}, which were isolated from 2010 until 2014 in the laboratory of the Institute for Medical Microbiology at the University of Zurich, are considered. Inhibition zone diameter (IZD) values in (mm) for the antibiotics Amoxicillin-clavulanic acid (AMC), Ceftriaxone (CRO), and Imipenem (IPM). IZD can attain values between 6 (mm) and 40 (mm).
 }
 \usage{data(bacterial_resistance)}
 \format{
   A data frame with 35 observations on the following 8 variables.
   \describe{
-    \item{\code{IZD}}{numeric, Inhibition zone diameter (IZD) values in (mm). IZD can attain values between 6 (mm) and 40 (mm).}
-    \item{\code{scIZD}}{numeric, Inhibition zone diameter (IZD) values scaled to have mean 0 and standard deviation 1.}
+    \item{\code{IZD}}{numeric, inhibition zone diameter (IZD) values in (mm). IZD can attain values between 6 (mm) and 40 (mm).}
+    \item{\code{scIZD}}{numeric, inhibition zone diameter (IZD) values scaled to have mean 0 and standard deviation 1.}
     \item{\code{ncrowt}}{numeric, counts for the wilde-type isolates for the antibiotic CRO.}
     \item{\code{ncroesbl}}{numeric, counts for the ESBL isolates for the antibiotic CRO.}
     \item{\code{nipmwt}}{numeric, counts for the wilde-type isolates for the antibiotic IPM.}
@@ -21,7 +21,7 @@
 }
 \details{These isolates were identified as resistant (ESBL) and susceptible (wild-type) bacteria through antimicrobial susceptibility testing (AST).
 For AST, bacterial isolates are brushed on agar plates.
-An antibiotic is provided in the middle of the agar plate.
+An antibiotic is provided on a disk in the middle of the agar plate.
 After eight hours of incubation, the inhibition zone diameter (IZD) is quantified.
 }
 \source{G. Valsesia, M. Hombach, F.P. Maurer, P. Courvalin, M. Roos, and E.C. Boettger. The

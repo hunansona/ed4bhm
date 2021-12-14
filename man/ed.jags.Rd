@@ -95,10 +95,14 @@ rjags.8schools  <- jags.model(
   data = jags_data,
   n.chains = 4,
   n.adapt = 4000,
-  inits = list(list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44561),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44562),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44563),
-               list(.RNG.name = "base::Wichmann-Hill", .RNG.seed = 44564)))
+  inits = list( list(mu = 3.1, tau = 3.117181, 
+                .RNG.name = "base::Wichmann-Hill", .RNG.seed = 314159),
+                list(mu = 3.3, tau = 2.517181, 
+                .RNG.name = "base::Marsaglia-Multicarry", .RNG.seed = 159314),
+                list(mu = 3.6, tau = 3.317181, 
+                .RNG.name = "base::Super-Duper", .RNG.seed = 413159),
+                list(mu = 3.8, tau = 2.317181,  
+                .RNG.name = "base::Mersenne-Twister", .RNG.seed = 143915)))
 
 # burn-in
 update(rjags.8schools , n.iter = 20000)
