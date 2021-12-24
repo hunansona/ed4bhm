@@ -95,6 +95,7 @@ fit.rjags.8schools <- coda.samples(
   thin = n.thin)
 
 del = 0.01
-descriptives_median_95CrI_jags_8schools <- extract_median_95CrI_descriptives_jags(jags.obj = fit.rjags.8schools,
+descriptives_median_95CrI_jags_8schools <- extract_median_95CrI_descriptives_jags(jags.obj = 
+                                            fit.rjags.8schools, 
                                             w = 1, prec.name = "tau_2")
 }

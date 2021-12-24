@@ -65,7 +65,8 @@ fit.inla.8schools <- inla(formula.8schools.HN,
                                 control.compute=list(hyperpar=TRUE),
                                 num.threads=1)
 
-descriptives_median_95CrI_inla_8schools <- extract_median_95CrI_descriptives_inla(inla.obj = fit.inla.8schools)
+descriptives_median_95CrI_inla_8schools <- extract_median_95CrI_descriptives_inla(inla.obj = 
+                                                  fit.inla.8schools)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

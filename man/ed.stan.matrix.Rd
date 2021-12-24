@@ -2,13 +2,13 @@
 \alias{ed.stan.matrix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Empirical determinacy estimates for stan
+Empirical determinacy estimates for Stan
 }
 \description{
-Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a stan model. This function takes the stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
+Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a Stan model. This function takes the Stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
 }
 \usage{
-ed.stan.matrix(stan.object.base,
+ed.stan(stan.object.base,
                     prec.name = NULL, 
                     delta = 0.01,
                     distance = "H2ALL")

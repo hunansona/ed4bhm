@@ -8,7 +8,7 @@ Input for ed.stan
 Converts a stanfit to a matrix. The matrix includes all the samples and the column called ll in the correct order
 }
 \usage{
-ed.stan.input(object_t)
+ed.stan(object_t)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

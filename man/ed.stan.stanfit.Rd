@@ -2,20 +2,20 @@
 \alias{ed.stan.stanfit}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Empirical determinacy estimates for stan
+Empirical determinacy estimates for Stan
 }
 \description{
-Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a stan model. This function takes the stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
+Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a Stan model. This function takes the Stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
 }
 \usage{
-ed.stan.stanfit(stan.object.base,
+ed.stan(stan.object.base,
                     prec.name = NULL, 
                     delta = 0.01,
                     distance = "H2ALL")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{stan.object.base}{stan fit object from the base model with a column called "ll", which contains the log-likelihood evaluated at MCMC sample of parameters.
+  \item{stan.object.base}{Stan fit object from the base model with a column called "ll", which contains the log-likelihood evaluated at MCMC sample of parameters.
   }
   \item{prec.name}{NULL or character, specifies the names of parameters (in JAGS and INLA precisions but in Stan standard deviations) to be log-transformed}
   \item{delta}{numeric, the numerical differentiation step and \eqn{w = 1 \pm \delta} is the weight, default value is 0.01.}

@@ -8,7 +8,7 @@ Plot of mce.ed
 Provides plots for the empirical determinacy estimates and their Monte Carlo standard errors.
 }
 \usage{
-plot.mce.ed(object, ranges = NULL, title = NULL)
+plot(object, ranges = NULL, title = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -94,9 +94,11 @@ stan_sim.ipm.aggregated <- sampling(
 fit.rstan_ipm.aggregated_logit_m <- as.matrix(stan_sim.ipm.aggregated)
 
 # we put the MCMC sample and the log-likelihood computed by hand together in a matrix
-fit.rstan_ipm.aggregated_logit_m_ll <- as.matrix(cbind(fit.rstan_ipm.aggregated_logit_m[,c("alpha", "beta", "ll_gq")])) 
+fit.rstan_ipm.aggregated_logit_m_ll <- as.matrix(cbind(
+                        fit.rstan_ipm.aggregated_logit_m[,c("alpha", "beta", "ll_gq")])) 
 
-# we change the name of the calumn containing the log-likelihood computed by generated quantities to ll
+# we change the name of the calumn containing the log-likelihood computed by 
+# generated quantities to ll
 colnames(fit.rstan_ipm.aggregated_logit_m_ll) <- c("alpha", "beta", "ll") 
 
 

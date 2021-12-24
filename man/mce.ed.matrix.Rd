@@ -8,7 +8,7 @@ Monte Carlo Error for empirical determinacy estimates
 Estimates the Monte Carlo standard error for empirical determinacy estimates. 
 }
 \usage{
-mce.ed.matrix(object, B = 200, rseed = 458275, ...)
+mce.ed(object, B = 200, rseed = 458275, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

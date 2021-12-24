@@ -15,10 +15,10 @@ mce.ed(object, B = 200, rseed = 458275, ...)
   \item{object}{An object of class \code{mcmc.list} or \code{stanfit} or \code{matrix}.}
   \item{B}{numeric, the number of bootstrap replications.}
   \item{rseed}{numeric, the random seed number.}
-  \item{...}{Arguments to be passed to methods...TODO-GK}
+  \item{...}{Arguments to be passed to methods}
 }
 \value{
-A matrix with the empirical determinacy estimates and their Monte Carlo Standard Errors.
+A matrix with the empirical determinacy estimates and their Monte Carlo standard errors.
 }
 
 \author{

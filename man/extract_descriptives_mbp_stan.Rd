@@ -11,7 +11,7 @@ extract_descriptives_mbp_stan(stan.object.base.modified, prec.name, delta)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{stan.object.base.modified}{a stan object from the base model in matrix form with a column called ll, which contains the log-likelihood evaluated at MCMC sample of parameters.}
+  \item{stan.object.base.modified}{a Stan object from the base model in matrix form with a column called ll, which contains the log-likelihood evaluated at MCMC sample of parameters.}
   \item{prec.name}{NULL or character, specifies the names of parameters (in JAGS and INLA precisions but in Stan standard deviations) for the log-transformation}
   \item{delta}{numeric, numerical differentiation step, the weighting factor \eqn{w = 1 \pm \delta}, the default value is 0.01.}  
 }

@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Empirical determinacy for Stan
 }
-\description{Generic function. Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a stan model. This function takes the stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
+\description{Generic function. Provides empirical determinacy estimates TED, EDL, EDS, pEDL, and pEDS from a Stan model. This function takes the Stan fit object from the base model as input and returns the identification values, descritive.matrix and delta.
 }
 \usage{
 ed.stan(stan.object.base,
@@ -13,7 +13,7 @@ ed.stan(stan.object.base,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{stan.object.base}{stan fit object from the base model with a column called "ll", which contains the log-likelihood evaluated at MCMC sample of parameters.}
+  \item{stan.object.base}{Stan fit object from the base model with a column called "ll", which contains the log-likelihood evaluated at MCMC sample of parameters.}
   \item{prec.name}{NULL or character, specifies the names of parameters (in JAGS and INLA precisions but in Stan standard deviations) to be log-transformed}
   \item{delta}{numeric, the numerical differentiation step and \eqn{w = 1 \pm \delta} is the weight, default value is 0.01.}
   \item{distance}{character string, specifies the type of the empirical determinacy measure. It can have values "H2" for TED, "BCL" for EDL and "BCS" for EDS and "H2ALL" for all the five measures (TED, EDL, EDS, pEDL and pEDS). The default value is "H2ALL".}
@@ -42,8 +42,9 @@ Malgorzata Roos, Georgios Kazantzidis, Sona Hunanyan
 ############################################################
 ##########---Bayesian logisic regression in Stan---#########
 data("bacterial_resistance")
-df_ipm <- data.frame(cbind(bacterial_resistance$scIZD, bacterial_resistance$nipmesbl, 
-                           bacterial_resistance$nipmwt))
+df_ipm <- data.frame(cbind(bacterial_resistance$scIZD, 
+                            bacterial_resistance$nipmesbl, 
+                            bacterial_resistance$nipmwt))
 colnames(df_ipm) <- c("scIZD", "nipmesbl", "nipmwt")
 
 ###################---Stan with binomial data---------########
@@ -107,19 +108,23 @@ stan_ipm <- sampling(
 
 fit.rstan_ipm_m <- as.matrix(stan_ipm)
 
-# we put the MCMC sample and the log-likelihood computed by hand together in a matrix
-fit.rstan_ipm_m_ll <- as.matrix(cbind(fit.rstan_ipm_m[,c("alpha", "beta", "ll_gq")])) 
+# we put the MCMC sample and the log-likelihood computed 
+# by hand together in a matrix
+fit.rstan_ipm_m_ll <- as.matrix(cbind(fit.rstan_ipm_m[,c("alpha", 
+                                        "beta", "ll_gq")])) 
 
-# we change the name of the calumn containing the log-likelihood computed by
-#generated quantities in Stan by ll
+# we change the name of the calumn containing the log-likelihood 
+# computed by generated quantities in Stan by ll
 colnames(fit.rstan_ipm_m_ll) <- c("alpha", "beta", "ll") 
 
 #the median and the 95\% CrIs of the posterior parameters
-descriptives95_stan_ipm <- extract_median_95CrI_descriptives_stan(fit.rstan_ipm_m_ll, 
-                          w = 1, prec.name = NULL)
+descriptives95_stan_ipm <- extract_median_95CrI_descriptives_stan(
+                              fit.rstan_ipm_m_ll, 
+                              w = 1, prec.name = NULL)
 
 #empirical determinacy estimates
-ed_stan_ipm <- ed.stan(stan.object.base = fit.rstan_ipm_m_ll,                                              distance = "H2ALL", delta = 0.01, prec.name=NULL)
+ed_stan_ipm <- ed.stan(stan.object.base = fit.rstan_ipm_m_ll, 
+                        distance = "H2ALL", delta = 0.01, prec.name=NULL)
 
 #Monte Carlo standard error for empirical determinacy estimates
 mce_ed_stan_ipm <- mce.ed(object = fit.rstan_ipm_m_ll, 
