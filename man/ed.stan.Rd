@@ -130,4 +130,11 @@ ed_stan_ipm <- ed.stan(stan.object.base = fit.rstan_ipm_m_ll,
 mce_ed_stan_ipm <- mce.ed(object = fit.rstan_ipm_m_ll, 
                                   B = 200, distance = "H2ALL", 
                                   delta = 0.01, prec.name = NULL)
+
+#plot
+plot(mce_ed_stan_ipm, ranges = list("TED" = c(0, 0.5),
+                                "EDL" = c(0, 0.5),
+                                "EDS" = c(0, 0.5),
+                                "pEDL" = c(0, 1),
+                                "pEDS" = c(0, 1)))
 }

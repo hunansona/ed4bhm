@@ -6,11 +6,10 @@ Date: 2021-12-24
 Author: Sona Hunanyan [aut, cre], Georgios Kazantzidis [aut, cre], Malgorzata Roos [aut]
 Maintainer: Sona Hunanyan <hunan.sona@gmail.com>
 Description: Until now, it is unclear to what extent data determine the marginal posterior distributions of parameters of Bayesian hierarchical models (BHM). To address this issue we compute the second derivative of the Bhattacharyya coefficient with respect to the weighted likelihood, defined the total empirical determinacy (TED), and its proportion for location (pEDL) and spread (pEDS). This method is implemented in the R package ed4bhm for BHMs fit by INLA, JAGS, and Stan. The empirical determinacy estimates (TED, pEDL, pEDS) clarify to what extent the location and spread of the marginal posterior distribution of parameters are determined by the data. Moreover, we provide bootstrap-based Monte Carlo standard errors of empirical determinacy estimates based on MCMC samples provided by JAGS and Stan.
-License: GPL (>=2) 
+License: GPL (>=2)
 Depends: R (>= 3.5.0)
-Imports: rjags (>= 3-13), 
-  coda (>= 0.13), 
-  INLA,
-  rstan (>= 2.18.1),
-  runjags
+Imports: rjags (>= 3-13), coda (>= 0.13), INLA, rstan (>= 2.18.1),
+        runjags
 SystemRequirements: JAGS-4.x.y.exe (x >=0, y>=0), GNU make
+NeedsCompilation: no
+Packaged: 2022-05-23 12:50:02 UTC; Sona Hunanyan
