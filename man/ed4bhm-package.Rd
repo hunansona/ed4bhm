@@ -153,9 +153,11 @@ ed_jags_8schools <- ed.jags(jags.object.base=fit.rjags.8schools , delta = del,
 
 #mce_ed_8schools_jags <- mce.ed(object=fit.rjags.8schools, B=200, distance = "H2ALL",
 #                          delta = del, prec.name="tau_2")
-                          
 
-                                  
+mce.ed(object=fit.rjags.8schools, B=200, distance = "H2ALL",
+                          delta = del, prec.name="tau_2")
+
+                          
 #plot
 #plot(mce_ed_8schools_jags, ranges = list("TED" = c(0, 0.5),
 #                                "EDL" = c(0, 0.5),
