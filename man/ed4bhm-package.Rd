@@ -151,20 +151,15 @@ ed_jags_8schools <- ed.jags(jags.object.base=fit.rjags.8schools , delta = del,
                             
 #Monte-Carlo standard error for empirical determinacy estimates
 
-#mce_ed_8schools_jags <- mce.ed(object=fit.rjags.8schools, B=200, distance = "H2ALL",
-#                          delta = del, prec.name="tau_2")
-
-mce.ed(object=fit.rjags.8schools, B=200, distance = "H2ALL",
+mce_ed_8schools_jags <- mce.ed(object=fit.rjags.8schools, B=200, distance = "H2ALL",
                           delta = del, prec.name="tau_2")
-
                           
 #plot
-#plot(mce_ed_8schools_jags, ranges = list("TED" = c(0, 0.5),
-#                                "EDL" = c(0, 0.5),
-#                                "EDS" = c(0, 0.5),
-#                                "pEDL" = c(0, 1),
-#                                "pEDS" = c(0, 1)))
-
+plot(mce_ed_8schools_jags, ranges = list("TED" = c(0, 0.5),
+                                "EDL" = c(0, 0.5),
+                                "EDS" = c(0, 0.5),
+                                "pEDL" = c(0, 1),
+                                "pEDS" = c(0, 1)))
 ############################################################
 ##########---Bayesian logisic regression in Stan---#########
 data("bacterial_resistance")
@@ -252,11 +247,5 @@ ed_stan_ipm <- ed.stan(stan.object.base = fit.rstan_ipm_m_ll,
 mce_ed_stan_ipm <- mce.ed(object = fit.rstan_ipm_m_ll, 
                                   B = 200, distance = "H2ALL", 
                                   delta = 0.01, prec.name = NULL)
-                                
-#plot
-plot(mce_ed_stan_ipm, ranges = list("TED" = c(0, 0.5),
-                                "EDL" = c(0, 0.5),
-                                "EDS" = c(0, 0.5),
-                                "pEDL" = c(0, 1),
-                                "pEDS" = c(0, 1)))
+
 }

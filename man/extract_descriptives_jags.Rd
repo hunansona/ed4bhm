@@ -105,6 +105,7 @@ fit.rjags.8schools <- coda.samples(
   n.iter = N.iter,
   thin = n.thin)
 
+del = 0.01
 descriptives_jags_8schools <- extract_descriptives_jags(jags.obj = fit.rjags.8schools, 
                                                         w = 1+0.01, prec.name = "tau_2")
 }
